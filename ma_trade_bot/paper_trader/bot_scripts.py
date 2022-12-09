@@ -51,7 +51,7 @@ async def process_pair_info(bot: Bot, message: types.Message, data: dict):
         image_absolute_url = build_absolute_url(PaperTradeRequest.HOST, image_src)
         try:
             file_bytes = await get_file_from_url(image_absolute_url)
-            await bot.send_message(message.chat.id, 'Diagram:')
+            await bot.send_message(message.chat.id, '📈 Diagram:')
             await bot.send_photo(message.chat.id, file_bytes)
         except Exception as e:
             await bot.send_message(message.chat.id, 'Some data could not be loaded 😢')
