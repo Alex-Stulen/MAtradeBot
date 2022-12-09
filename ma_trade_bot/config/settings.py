@@ -19,6 +19,24 @@ load_dotenv(DOTENV_PATH)
 # Telegram ma_trade_bot access token
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
+BOT_SKIP_UPDATES = True if os.getenv('BOT_SKIP_UPDATES') == 'True' else False
+
+# Polling has a higher priority.
+# If you specify USE_POLLING = True and USE_WEBHOOK = True,
+# then the bot will start according to the polling system
+USE_POLLING = True if os.getenv('USE_POLLING') == 'True' else False
+USE_WEBHOOK = True if os.getenv('USE_WEBHOOK') == 'True' else False
+
+# Do not specify for WEBHOOK_HOST at the end of /
+WEBHOOK_HOST = os.getenv('WEBHOOK_HOST')
+WEBHOOK_PATH = os.getenv('WEBHOOK_PATH')
+
+WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
+
+WEBAPP_HOST = os.getenv('WEBAPP_HOST')
+WEBAPP_PORT = int(os.getenv('WEBAPP_PORT', 80))
+
+
 # The maximum number of characters allowed in one message
 MAX_MESSAGE_LEN = os.getenv('MAX_MESSAGE_LEN')
 MAX_MESSAGE_LEN = int(MAX_MESSAGE_LEN) if MAX_MESSAGE_LEN and MAX_MESSAGE_LEN.isdigit() else 64

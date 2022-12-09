@@ -17,14 +17,22 @@ dp = Dispatcher(bot, storage=storage)
 
 
 async def on_startup(dp_: Dispatcher):
+    if settings.USE_WEBHOOK and not settings.USE_POLLING:
+        await bot.set_webhook(settings.WEBHOOK_URL)
+
     settings.LOGGER.log.debug('Bot started working')
+    print('Bot started working')
 
 
 async def on_shutdown(dp_: Dispatcher):
+    if settings.USE_WEBHOOK and not settings.USE_POLLING:
+        await bot.delete_webhook()
+
     # Close DB connection
     await dp_.storage.close()
     await dp_.storage.wait_closed()
     settings.LOGGER.log.debug('The bot has finished')
+    print('The bot has finished')
 
 
 @dp.message_handler(commands=['start', ])
