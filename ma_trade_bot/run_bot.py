@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from aiogram.utils import executor
 
 from config import settings
