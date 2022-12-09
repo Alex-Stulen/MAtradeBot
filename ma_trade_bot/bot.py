@@ -36,9 +36,14 @@ async def on_shutdown(dp_: Dispatcher):
 
 
 @dp.message_handler(commands=['start', ])
-async def cmd_start(messages: types.Message):
+async def cmd_start(message: types.Message):
     await states.PairState.pair.set()
-    await messages.reply('Pick the trading pair (for example: BTCUSDT):')
+    await message.reply('Pick the trading pair (for example: BTCUSDT):')
+
+
+@dp.message_handler(commands=['help', ])
+async def cmd_help(message: types.Message):
+    await bot.send_message(message.chat.id, settings.CMD_HELP_TEXT)
 
 
 @dp.message_handler(lambda message: len(message.text) > settings.MAX_MESSAGE_LEN, state='*')
