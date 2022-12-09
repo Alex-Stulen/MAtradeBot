@@ -66,3 +66,11 @@ except ImportError as exc:
     raise exc
 
 LOGGER = logger.Logger(name=LOGGER_NAME, level=logging.DEBUG, handler=LOGGER_FILE_HANDLER)
+
+CMD_HELP_TEXT = """
+What if you traded only with Moving Average?
+
+This application imitates paper trading for you. It is making a purchase every time price of the given asset touches 
+the given MA from the support side and then either takes profit or loss regarding the given parameters.
+If the price is below the MA the purchase happens on the close of the candle that breaks the MA.
+"""

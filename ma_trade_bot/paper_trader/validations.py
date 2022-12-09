@@ -15,7 +15,8 @@ def is_valid_pair(pair: str):
     validation_list = [
         pair is not None,
         isinstance(pair, str),
-        len(pair) > 0
+        len(pair) > 0,
+        not pair.startswith('/')
     ]
 
     return _validate_list(validation_list)
